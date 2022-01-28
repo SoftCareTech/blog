@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import IndexScreen from './src/screen/IndexScreen'
-
+import { BlogProvider } from './src/context/BlogContext'
 import React from 'react'
 const navigator = createStackNavigator({
     Index: IndexScreen
@@ -16,5 +16,7 @@ const navigator = createStackNavigator({
 
 const App = createAppContainer(navigator)
 export default () => {
-    return <App />
+    return <BlogProvider>
+        <App />
+    </BlogProvider>
 }
