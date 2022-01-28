@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 
 const BlogContext = React.createContext()
 
 export const BlogProvider = ({ children }) => {
-    const blogPost = [
-        { title: 'Blog 1' },
-        { title: 'Blog 2' },
-        { title: 'Blog 3' }
-    ]
 
-    const [blogPosts, setBlogPosts] = useState(blogPost)
-    const addBlogPost = () => {
-        setBlogPosts([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
+    const blogReducer = (state, action) => {
+
+
+        switch (action.type) {
+            case 'add_blogpost':
+                return [...state, { title: `Blog Post #${state.length + 1}` }]
+        }
     }
-    // edit,delete and view fuction can created like the addBlogPost but will use useReducer 
+
+
+    const [blogPosts, dispatch] = useReducer(blogReducer, [])
+    const addBlogPost = () => {
+        dispatch({ type: 'add_blogpost' })
+    }
+
     return <BlogContext.Provider value={
         {
             data: blogPosts,
