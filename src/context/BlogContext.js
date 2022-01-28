@@ -13,7 +13,7 @@ export const BlogProvider = ({ children }) => {
     const addBlogPost = () => {
         setBlogPosts([...blogPosts, { title: `Blog Post #${blogPosts.length + 1}` }])
     }
-
+    // edit,delete and view fuction can created like the addBlogPost but will use useReducer 
     return <BlogContext.Provider value={
         {
             data: blogPosts,
