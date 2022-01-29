@@ -8,7 +8,6 @@ const IndexScreen = ({ navigation }) => {
 
 
     return <>
-        <Button title='Add Post' onPress={addBlogPost} />
         <FlatList
             data={state}
             keyExtractor={(item) => item.id}
@@ -29,7 +28,33 @@ const IndexScreen = ({ navigation }) => {
 
     </>
 }
+IndexScreen.navigationOptions = ({ navigation }) => {
 
+    return {
+        headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+                <Feather name='plus' size={30} />
+            </TouchableOpacity>
+        ),
+    };
+    /* return {
+         headerRight: () => (
+             <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
+                 <EvilIcons name="pencil" size={35} />
+             </TouchableOpacity>
+         ),
+     };  
+      
+     return {
+         headerRight: (
+             <TouchableOpacity onPress={() => navigation.navigate('Create')} >
+                 <Feather name='plus' size={30} />
+             </TouchableOpacity>
+ 
+         )
+     }
+     */
+}
 
 const styles = StyleSheet.create({
     row: {
