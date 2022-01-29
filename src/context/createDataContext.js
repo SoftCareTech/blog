@@ -4,18 +4,16 @@ export default (reducer, actions, initialState) => {
     const Context = React.createContext()
     const Provider = ({ children }) => {
         const [state, dispatch] = useReducer(reducer, initialState)
-       
-       // action === { addBlogPost:(dispatch)=>{return ()=>{}}}
-      
-       const boundActions ={}
+        // action === { addBlogPost:(dispatch)=>{return ()=>{}}} 
+        console.log(actions)
+        const boundActions = {}
+        for (let key in actions) {
+            boundActions[key] = actions[key](dispatch)
+            console.log(key)
+        }
 
-           for(let key in actions){
- boundActions[key]= actions[key](dispatch)
-           }
-       
-      
-      
-      return <Context.Provider value={{ state,...boundActions }}>
+        return <Context.Provider
+            value={{ state, ...boundActions }}>
             {children}
         </Context.Provider>
     }

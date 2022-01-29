@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text, StyleSheet, Button } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { Context as BlogContext } from '../context/BlogContext'
 import { Feather } from '@expo/vector-icons'
-const IndexScreen = () => {
+const IndexScreen = ({ navigation }) => {
     const { state, addBlogPost, deletePost } = useContext(BlogContext)
 
 
@@ -13,13 +13,16 @@ const IndexScreen = () => {
             data={state}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => {
-                return <View style={styles.row}>
-                    <Text style={styles.title}>{item.title} -- {item.id}
-                    </Text>
-                    <TouchableOpacity onPress={() => { deletePost(item.id) }}>
-                        <Feather name='trash' style={styles.icon} />
-                    </TouchableOpacity>
-                </View>
+                return (<TouchableOpacity onPress={() => navigation.navigate('Show', { id: item.id })}>
+                    <View style={styles.row}>
+                        <Text style={styles.title}>{item.title} -- {item.id}
+                        </Text>
+                        <TouchableOpacity onPress={() => { deletePost(item.id) }}>
+                            <Feather name='trash' style={styles.icon} />
+                        </TouchableOpacity>
+                    </View>
+                </TouchableOpacity>
+                )
 
             }}
         />
