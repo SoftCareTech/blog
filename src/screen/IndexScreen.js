@@ -3,10 +3,18 @@ import { TouchableOpacity, View, Text, StyleSheet, Button } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { Context as BlogContext } from '../context/BlogContext'
 import { Feather } from '@expo/vector-icons'
+import { listen } from 'express/lib/application'
 const IndexScreen = ({ navigation }) => {
     const { state, getBlogPost, deletePost } = useContext(BlogContext)
     useEffect(() => {
         getBlogPost()
+        navigation.addListener('didFocus', () => {
+            getBlogPost()
+        })
+        return () => {
+            ///on destroyed
+            listen.remove()
+        }
     }, [])
     return <>
         <FlatList
