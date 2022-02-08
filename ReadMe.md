@@ -4,9 +4,10 @@
 # Things to learn in this Project
  - axios  Api call  
  - useReducer 
- - Create  a Hook
+ - Hooks
  - Components
- - Navigation 
+ - Navigations  
+ - Context
 
 ## Installation
 To run
@@ -20,15 +21,14 @@ download project and install node dependency
  ```
  
 
-## start server at https://github.com/SoftCareTech/jsonserver-blog
-``` 
-npm i
+## start server at ../jsonserver
+```
 npm run db 
 ```
- 
-# Open api and change base url if running on phone
+
+# Open api and change uri if runing on phone
 if not using direct Ip address use ngrok and run ```
 ngrook http 149 
-``` in ngrok folder in https://github.com/SoftCareTech/jsonserver-blog project
+``` in ngrok folder in jsonserver project
 copy the url to api base url
 
