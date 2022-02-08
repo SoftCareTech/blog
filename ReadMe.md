@@ -21,7 +21,8 @@ download project and install node dependency
  
 
 ## start server at https://github.com/SoftCareTech/jsonserver-blog
-```
+``` 
+npm i
 npm run db 
 ```
  
